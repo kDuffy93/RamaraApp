@@ -26,7 +26,7 @@
             <td class="active"><%= userCourses[i].expiry %></td>
 
 
-            <% if(user._id == "59ef9807d3b3ee0021d50552" || user._id == "59ef98d6d3b3ee0021d50553" || user._id == "58f518ff43a6d491cc0a3274")
+            <% if(user._id == "5a70931cbb5be500204ed9d0" || user._id == "58f518ff43a6d491cc0a3274")
             { %>
 <td class="info"><a href="/employeeDashboard/employeeCertifications/<%= userCourses[i].userid %>" class="btn btn-info">Edit</a></td>
             <% }
@@ -34,7 +34,7 @@
             <td class="info"><a href="#" class="btn btn-info" disabled>Edit</a></td>
             <%    }%>
 
-               <% if(user._id == "59ef9807d3b3ee0021d50552" || user._id == "59ef98d6d3b3ee0021d50553" || user._id == "58f518ff43a6d491cc0a3274")
+               <% if(user._id == "5a70931cbb5be500204ed9d0" || user._id == "58f518ff43a6d491cc0a3274")
                { %>
                  <td class="danger"><a href="delete/<%= userCourses[i]._id %>/<%=users._id%>" class="confirmation btn btn-danger">Delete</a></td>
             <% }

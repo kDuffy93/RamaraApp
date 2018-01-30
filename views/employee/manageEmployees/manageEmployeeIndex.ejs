@@ -25,7 +25,7 @@
     <input type="text" style="width:225px;" placeholder="Search Employees By <%= searchBy %>" onkeydown="filterTable()" onkeyup="filterTable()" id="filterText"/>
     </div>
 </div>
-<% if(user._id == "59ef9807d3b3ee0021d50552" || user._id == "59ef98d6d3b3ee0021d50553" || user._id == "58f518ff43a6d491cc0a3274")
+<% if(user._id == "5a70931cbb5be500204ed9d0" || user._id == "58f518ff43a6d491cc0a3274")
 { %>
 <a href="manageEmployees/add" class="btn btn-success" style="margin-bottom:10px;">Add a New employee</a>
 <% }
@@ -45,7 +45,7 @@ else{%>
             <td class="active"><%= users[i].surName %></td>
             <td class="warning" ><%= users[i].departmentname %></td>
             <td class="info">
-              <% if(user._id == "59ef9807d3b3ee0021d50552" || user._id == "59ef98d6d3b3ee0021d50553" || user._id == "58f518ff43a6d491cc0a3274")
+              <% if(user._id == "5a70931cbb5be500204ed9d0" || user._id == "58f518ff43a6d491cc0a3274")
               { %>
         <a href="employeeCertifications/<%= users[i]._id %>" class="btn btn-info">Add New Certificate</a>
              <% }
@@ -78,7 +78,7 @@ else{%>
                <%  }
       %>
             </td>
-            <% if(user._id == "59ef9807d3b3ee0021d50552" || user._id == "59ef98d6d3b3ee0021d50553" || user._id == "58f518ff43a6d491cc0a3274")
+            <% if(user._id == "5a70931cbb5be500204ed9d0" || user._id == "58f518ff43a6d491cc0a3274")
             { %>
             <td class="info"><a href="manageEmployees/<%= users[i]._id %>" class="btn btn-info">Edit</a></td>
            <% }
@@ -86,7 +86,7 @@ else{%>
             <td class="info"><a href="#" class="btn btn-info" disabled>Edit</a></td>
            <%    }%>
 
-               <% if(user._id == "59ef9807d3b3ee0021d50552" || user._id == "59ef98d6d3b3ee0021d50553" || user._id == "58f518ff43a6d491cc0a3274")
+               <% if(user._id == "5a70931cbb5be500204ed9d0" || user._id == "58f518ff43a6d491cc0a3274")
                { %>
             <td class="danger"><a href="manageEmployees/delete/<%= users[i]._id %>" class="confirmation btn btn-danger">Delete</a></td>
     <% }
