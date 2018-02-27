@@ -31,7 +31,7 @@
 
 
 
-            <td class="active"><%= userCourses[i].expiry.toDateString() %></td>
+            <td class="active"><% if(userCourses[i].expiry != null){%><%= userCourses[i].expiry.toDateString()%><%} %></td>
 
 <td class="info"><a href="viewImage/<%= userCourses[i].photourl %>" class="btn btn-info">View Image</a></td>
 
