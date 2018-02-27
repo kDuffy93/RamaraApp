@@ -47,15 +47,18 @@ function expires()
 
   let chkBox = document.getElementById("expiresCheckBox");
   let expiresDiv = document.getElementById("expiresDiv");
+    let expiry = document.getElementById("expiry");
 if(chkBox.checked == true)
 {
     console.log("in if");
 expiresDiv.style.display = "block";
+expiry.required = true;
 }
 else if(chkBox.checked == false)
 {
     console.log("in else");
   expiresDiv.style.display = "none";
+  expiry.required = false;
 }
 }
 
