@@ -40,6 +40,29 @@ else{
 
 }
 
+
+function expires()
+{
+  console.log("in expires");
+
+  let chkBox = document.getElementById("expiresCheckBox");
+  let expiresDiv = document.getElementById("expiresDiv");
+if(chkBox.checked == true)
+{
+    console.log("in if");
+expiresDiv.style.display = "block";
+}
+else if(chkBox.checked == false)
+{
+    console.log("in else");
+  expiresDiv.style.display = "none";
+}
+}
+
+
+
+
+
 function ddl()
 {
   console.log("in filterDDL");

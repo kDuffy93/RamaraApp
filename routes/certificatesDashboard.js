@@ -154,6 +154,7 @@ router.post('/course/add', certIcon.single("certicon"), function(req, res, next)
 
 
 router.post('/course/:_id', certIcon.single("certicon"), function(req, res, next) {
+  console.log("in the post...");
  console.log(req.file);
    // grab id from url
    let _id = req.params._id;
@@ -179,23 +180,23 @@ url = course.findById(_id, function(err, course) {
 url = req.file.filename;
      }
 
-
+  console.log ("course     " +  req.body.course + "     coursetype     " + req.body.courseTypes);
 
    // populate new book from the form
    let courseObj = new course({
       _id: _id,
-      course : req.body.course,
-      coursetype : req.body.courseType,
+      coursename : req.body.course,
+      coursetype : req.body.courseTypes,
       iconurl: url
    });
-
+console.log(courseObj);
    course.update({ _id: _id }, courseObj,  function(err) {
       if (err) {
          console.log(err);
          res.render('error');
          return;
       }
-      res.redirect('/certificatesDashboard/course');
+res.redirect('/certificatesDashboard/course');
    });
 
 });

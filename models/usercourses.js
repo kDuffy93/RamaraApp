@@ -10,11 +10,22 @@ var userCoursesSchema = new mongoose.Schema({
     },
      coursename: {
       type: String,
-        required: 'Course name is missing. Please select one.'
+        required: 'Course name is missing. Please enter one.'
     },
+    expires: {
+     type: Boolean,
+   },
      expiry: {
       type: Date,
-        required: 'expiry is missing. Please enter one.'
+
+    },
+     takenOn: {
+      type: Date,
+        required: 'When was this course taken?'
+    },
+     photourl: {
+      type: String,
+        required: 'Please upload a copy of the certificate.'
     }
 });
 

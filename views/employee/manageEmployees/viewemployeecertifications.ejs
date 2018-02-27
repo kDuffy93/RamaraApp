@@ -18,12 +18,23 @@
 
 
 <table class="table table-hover table-responsive table-bordered" id="filterTable">
-    <tr><th>Course</th><th>Expiry</th><th>Edit</th><th>Delete</th></tr>
+    <tr><th>Course</th><th>Taken On</th><th>Expires</th><th>Expiry</th><th>View Image</th><th>Edit</th><th>Delete</th></tr>
 <!-- logic attach the associated id's to the proper things in the table' -->
     <% for (var i = 0; i < userCourses.length; i++) { %>
         <tr>
             <td class="active"><%= userCourses[i].coursename %></td>
-            <td class="active"><%= userCourses[i].expiry %></td>
+
+<td class="active"><%= userCourses[i].takenOn.toDateString() %></td>
+
+<td class="active"><%= userCourses[i].expires %></td>
+
+
+
+
+            <td class="active"><%= userCourses[i].expiry.toDateString() %></td>
+
+<td class="info"><a href="viewImage/<%= userCourses[i].photourl %>" class="btn btn-info">View Image</a></td>
+
 
 
             <% if(user._id == "5a70931cbb5be500204ed9d0" || user._id == "58f518ff43a6d491cc0a3274")

@@ -20,6 +20,15 @@ router.get('/',   function(req, res, next) {
       res.redirect('/firstlogin')
 
     }
+    if(req.user._id == "5a70931cbb5be500204ed9d0" || req.user._id == "58f518ff43a6d491cc0a3274")
+    {
+      res.render('home', { title: 'Ramara Certificates Home',
+      user: req.user});
+    }
+    else{
+        res.redirect('/employeeDashboard/manageEmployee')
+    }
+
   }
 
 

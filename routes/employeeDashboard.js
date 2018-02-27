@@ -1,6 +1,6 @@
 let express = require('express');
 let router = express.Router();
-
+let multer = require('multer');
 let course = require('../models/course');
 let user = require('../models/users');
 let userCourse = require('../models/usercourses');
@@ -31,6 +31,13 @@ next();
   next();
     });
 
+    var certPhoto = multer({
+
+      dest:  'public/images/certificate-photos',
+       filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now())
+      }
+    });
 
 /* GET the employee dashboard */
 router.get('/', function(req, res, next) {
@@ -394,8 +401,26 @@ courses: courses,
 });
 
 
-router.post('/employeeCertifications/:_id', function(req, res, next) {
+router.post('/employeeCertifications/:_id', certPhoto.single("certphoto"), function(req, res, next) {
+  console.log(" coursename      " + req.body.coursename);
+  console.log("expiresCheckBox      " + req.body.expiresCheckBox);
+  console.log("expiry      " + req.body.expiry);
+  console.log("takenDate      " + req.body.takenDate);
+  console.log("filename      " + req.file.filename);
 
+let expirescheckboxVar;
+  if(req.body.expiresCheckBox == undefined)
+  {
+    expirescheckboxVar = false
+  }
+  else if(req.body.expiresCheckBox == "true")
+  {
+    expirescheckboxVar = true
+  }
+
+
+let expiresVar = req.body.expiresCheckBox;
+  console.log("expiresVar      " + expiresVar);
    // grab id from url
    let user_id = req.params._id;
 
@@ -416,25 +441,55 @@ for (let i=0; i < selectedUsersCourses.length; i++) {
 console.log("in for");
 if(req.body.coursename == selectedUsersCourses[i].coursename)
 {
- let updatedUserCourse = new userCourse({
-      _id: selectedUsersCourses[i]._id,
-      userid: user_id,
-      coursename: req.body.coursename,
-      expiry : req.body.expiry
+  let updatedUserCourse;
 
-   });
-   console.log("populated new model");
+  if(expiresVar == "true"){
+    updatedUserCourse = new userCourse({
+    _id: selectedUsersCourses[i]._id,
+    userid: user_id,
+    coursename: req.body.coursename,
+    expires: expirescheckboxVar,
+    expiry: req.body.expiry,
+    takenOn:req.body.takenDate,
+    photourl : req.file.filename
+     });
+      console.log("populated new model from if ");
+      userCourse.update({ _id: selectedUsersCourses[i]._id }, updatedUserCourse,  function(err) {
+         if (err) {
+            console.log("from update" + err);
+            res.render('error');
+            return;
+         }
+         console.log("after update");
+
+      });
+  }
+  else if(expiresVar != "true"){
+       updatedUserCourse = new userCourse({
+    _id: selectedUsersCourses[i]._id,
+    userid: user_id,
+    coursename: req.body.coursename,
+    expires: expirescheckboxVar,
+      expiry: '',
+    takenOn:req.body.takenDate,
+    photourl : req.file.filename
+     });
+     console.log("populated new model from else ");
+
+     userCourse.update({ _id: selectedUsersCourses[i]._id }, updatedUserCourse,  function(err) {
+        if (err) {
+           console.log("from update" + err);
+           res.render('error');
+           return;
+        }
+        console.log("after update");
+
+     });
+
+  }
 
 
-   userCourse.update({ _id: selectedUsersCourses[i]._id }, updatedUserCourse,  function(err) {
-      if (err) {
-         console.log("from update" + err);
-         res.render('error');
-         return;
-      }
-      console.log("after update");
 
-   });
  res.redirect('/employeeDashboard/manageEmployee');
  console.log("before return");
      return;
@@ -445,15 +500,33 @@ if(req.body.coursename == selectedUsersCourses[i].coursename)
 
  }
 
+  if(expiresVar == "true"){
 
+    userCourse.create(
+        {
+          userid: user_id,
+          coursename: req.body.coursename,
+          expires: expirescheckboxVar,
+          expiry: req.body.expiry,
+          takenOn:req.body.takenDate,
+          photourl : req.file.filename
 
-userCourse.create(
-    {
-      userid: user_id,
-      coursename: req.body.coursename,
-      expiry : req.body.expiry
+       });
+  }
+  else if(expiresVar != "true"){
 
-   });
+    userCourse.create(
+        {
+          userid: user_id,
+          coursename: req.body.coursename,
+          expires: expirescheckboxVar,
+          expiry: '',
+          takenOn:req.body.takenDate,
+          photourl : req.file.filename
+
+       });
+  }
+
 
       res.redirect('/employeeDashboard/manageEmployee');
 
@@ -510,5 +583,15 @@ console.log(req.params);
   });
 
 
+
+  router.get('/viewEmployeeCertifications/viewImage/:photourl', function(req, res, next) {
+   let photourl = req.params.photourl;
+
+      //if theres a matchid id, load the edit page for that department
+      res.render('employee/manageEmployees/viewCertificateImage', {
+         photourl: photourl,
+         title: 'View Image' , user: req.user
+      });
+   });
 
 module.exports = router;
