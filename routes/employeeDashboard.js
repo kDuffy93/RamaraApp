@@ -168,11 +168,13 @@ course.find(function(err, allCourses) {
          res.end(err);
          return;
       }
+      let now = new Date();
       res.render('employee/manageEmployees/manageEmployeeIndex', {
         searchBy: "First Names",
         allUserCourses: allUserCourses,
         allCourses: allCourses,
          users: users,
+         now: now,
          title: 'Users Index' , user: req.user
       });
    }).sort({surName: 'asc'}).exec(function(err, docs) {  });
