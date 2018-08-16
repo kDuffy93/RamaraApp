@@ -376,32 +376,60 @@ console.log( workingUser.password);
 //------------------------------for employee Certificates------------------------------------------------
 router.get('/employeeCertifications/:_id', function(req, res, next) {
 
-   // grab id from the url
-   let _id = req.params._id;
-   user.findById(_id, function(err, users) {
-      if (err) {
-         console.log(err);
-         res.render('error');
-         return;
-      }
-course.find(function(err, courses) {
 
-      if (err) {
-         console.log(err);
-         res.end(err);
-         return;
-      }
+     // grab id from the url
 
-       res.render('employee/manageEmployees/cert', {
-         users: users,
-         uid: users._id,
-courses: courses,
-         title: 'Departments Index' , user: req.user
+     let _id = req.params._id;
+     userCourse.findById(_id,function(err, userCourse) {
+        if (err) {
+           console.log("no usercourse found" + err);
+           res.render('error');
+           return;
+        }
+        let userid;
+        let coursename;
+        let expiry;
+        if(userCourse != null){
+          coursename = userCourse.coursename;
+           expiry = userCourse.expiry.toISOString().split("T")[0];
+            userid = userCourse.userid;
+        }
+        else
+        {
+             userid = _id
+        }
+
+
+
+
+
+     user.findById(userid, function(err, users) {
+        if (err) {
+           console.log(err);
+           res.render('error');
+           return;
+        }
+  course.find(function(err, courses) {
+
+        if (err) {
+           console.log(err);
+           res.end(err);
+           return;
+        }
+
+         res.render('employee/manageEmployees/cert', {
+           users: users,
+           uid: users._id,
+           expiry: expiry,
+           coursename: coursename,
+           update: true,
+  courses: courses,
+           title: 'Departments Index' , user: req.user
+     });
    });
- });
-});
-});
-
+  });
+  });
+  });
 
 router.post('/employeeCertifications/:_id', certPhoto.single("certphoto"), function(req, res, next) {
   console.log(" coursename      " + req.body.coursename);

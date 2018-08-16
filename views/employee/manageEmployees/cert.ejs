@@ -55,11 +55,11 @@ else if(chkBox.checked == false)
     <div class="form-group col-md-12">
 
       <label for="expires" class="col-md-3 control-label">does this certificate expire? </label>
-    <input id="expiresCheckBox"  name="expiresCheckBox" class="col-md-2"  type="checkbox" value="true" onchange="expires()" >
+    <input id="expiresCheckBox"  name="expiresCheckBox" class="col-md-2"  type="checkbox" checked onchange="expires()" >
 
       <div id="expiresDiv" class="col-md-6" style="display:none">
             <label for="expiry" class="col-md-2 control-label">Expiry: </label>
-            <input name="expiry" class="col-md-4" id="expiry"    type="date" placeholder="YYYY-MM-DD" min="2017-01-01" max="2050-01-01"  />
+            <input name="expiry" class="col-md-4" id="expiry"    type="date" placeholder="YYYY-MM-DD" min="2017-01-01" max="2050-01-01" value="<%= expiry %>" />
           </div>
 
         </div>
