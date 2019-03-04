@@ -1,5 +1,5 @@
 body{
-  
+
   padding-top: 150px;
   padding-bottom: 200px;
   margin-right:10px;
@@ -23,10 +23,18 @@ a {
 }
 #footer{
     position:fixed;
-    height:50px;
+    height:20px;
     bottom:0px;
     left:0px;
     right:0px;
     margin-bottom:0px;
 }
 
+.bigCheck{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2.5); /* IE */
+  -moz-transform: scale(2.5); /* FF */
+  -webkit-transform: scale(2.5); /* Safari and Chrome */
+  -o-transform: scale(2.5); /* Opera */
+  padding: 10px;
+}
