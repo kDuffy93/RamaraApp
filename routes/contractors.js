@@ -8,6 +8,7 @@ let contractor = require('../models/contractor');
 let session = require('express-session');
 let localStrategy = require('passport-local').Strategy;
 
+
 router.use( function(req, res, next) {
   if(req.user != undefined){
      if(req.user.changepassword == true){
@@ -72,13 +73,26 @@ router.post('/add', function(req, res, next) {
 console.log(req.body.contractorName);
   let contractorsName = req.body.contractorName;
     let contractorsservices = req.body.services;
-    for(var i=0; i < contractorsservices.length; i++)
+    console.log(contractorsservices);
+    if(contractorsservices == undefined)
     {
-      if(contractorsservices[i] == ""|| contractorsservices[i] == '')
+
+    }
+    console.log(req.body.contractorName);
+    try{
+      for(var i=0; i < contractorsservices.length; i++)
       {
-        contractorsservices.splice(i, 1);
+        if(contractorsservices[i] == ""|| contractorsservices[i] == '')
+        {
+          contractorsservices.splice(i, 1);
+        }
       }
     }
+    catch(err) {
+      // need to find a way to do popups. look into npm popups package.
+// return confirm('You didnt add a service for this contractor. \n Are you sure you want to continue?');
+    }
+
   let contractorsphoneNumber = req.body.tel;
   let contractorsemail = req.body.email;
 //for wsib
