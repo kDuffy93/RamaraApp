@@ -60,7 +60,13 @@
     </div>
     <div class="form-group">
     <label for="caf" class="control-label">Contractor Agreement Form</label>
-       <input id="caf" type="date"name="caf" value="<%= caf %>" />
+    <% if(locals.caf){ %>
+         <input id="caf" type="date"name="caf" value="<%= caf %>" />
+  <%   }
+    else {%>
+         <input id="caf" type="date"name="caf" value="" />
+  <%    } %>
+
 
       </div>
     <div class="form-group">
@@ -68,14 +74,25 @@
     <input id="wsib" type="number" name="wsib" value="<%= contractor.wsib %>"  />
 
     <label for="wsibExp" class="control-label">Check Again On:</label>
-       <input id="wsibExp" type="date"name="wsibExp" value="<%= wsibExp %>" />
 
+      <% if(locals.wsibExp){ %>
+       <input id="wsibExp" type="date"name="wsibExp" value="<%= wsibExp %>" />
+       <%   }
+         else {%>
+         <input id="wsibExp" type="date"name="wsibExp" value="" />
+       <%    } %>
 
       </div>
 
       <div class="form-group">
       <label for="insurance" class="control-label">Insurance Policy Expiry</label>
-         <input id="insurance" type="date"name="insurance" value="<%= insurance %>" />
+
+         <% if(locals.insurance){ %>
+           <input id="insurance" type="date"name="insurance" value="<%= insurance %>" />
+          <%   }
+            else {%>
+               <input id="insurance" type="date"name="insurance" value="" />
+          <%    } %>
 
         </div>
 
