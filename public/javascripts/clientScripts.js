@@ -3,9 +3,13 @@
 $('.confirmation').on('click', function() {
     return confirm('Are you sure you want to delete this?');
 });
+<<<<<<< HEAD
 $('.servicesConfirmation').on('click', function() {
     return confirm('You didnt add a service for this contractor. \n Are you sure you want to continue?');
 });
+=======
+
+>>>>>>> parent of defdbcc... User managmant seperation & Navagation redesign + contractors tab.
 
 
 
