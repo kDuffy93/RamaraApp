@@ -5,13 +5,13 @@
 <div class="col-md-9 col-md-offset-1">
  <% if (!user) { %>
 
-<h1> Welcome to the Township of Ramara App<h1>
+<h1> Welcome to the Township of Ramara Certifications App<h1>
       <h2 class="col-md-offset-2"> Head over to the <a href="/login"> login </a> page to get started</h2>
   </div>
 <% }
 else { %>
-<h1> Hi <%= user.firstName %>, Welcome to the Township of Ramara App<h1>
-          <h2> Head over to the <a href="/home"> Health & Safety Dashboard </a> to view employee certificates</h2>
+<h1> Hi <%= user.firstName %>, Welcome to the Township of Ramara Certifications App<h1>
+          <h2> Head over to the <a href="/home"> dashboard </a> to get started</h2>
           </div>
 <% } %>
 </main>

@@ -11,28 +11,17 @@ let userCourse = require('../models/usercourses');
 
 //make entire view private
 router.use( function(req, res, next) {
-	if(!req.user){
-    req.session.messages =["You must be logged-in to view this page"];
-    req.session.messages1 = ["please enter you're credentials below"];
-  
+if(!req.user){
 
-    res.redirect('/login')
-  }
-  next();
-});
-
+	res.redirect('/login')
+}
+next();
+	});
 	router.use( function(req, res, next) {
-	  if(req.user != undefined){
-	     if(req.user.changepassword == true){
-	    res.redirect('/firstlogin')
-	    }
-	  }
-	  else{
-	    req.session.messages =["You must be logged-in to view this page"];
-	    req.session.messages1 = ["please enter you're credentials below"];
-	      res.redirect('/login')
-	  }
-	  next();
+	if(req.user.changepassword == true){
+	  res.redirect('/firstlogin')
+	}
+	next();
 	  });
 
 /* GET users listing. */

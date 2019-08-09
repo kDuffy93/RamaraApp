@@ -25,12 +25,19 @@
     <input type="text" style="width:225px;" placeholder="Search Employees By <%= searchBy %>" onkeydown="filterTable()" onkeyup="filterTable()" id="filterText"/>
     </div>
 </div>
+<% if(user._id == "5b1a8cee8d7ed00020a30a4f" || user._id == "58f518ff43a6d491cc0a3274")
+{ %>
+<a href="manageEmployees/add" class="btn btn-success" style="margin-bottom:10px;">Add a New employee</a>
+<% }
+else{%>
+
+<%    }%>
 
 </div>
 
 
 <table class="tablesorter table table-hover table-responsive table-bordered" id="filterTable">
-    <tr><th>First Name</th><th>Last Name</th><th>department</th><th>Certifications<!--<th>Edit</th><th>Delete</th>--></tr>
+    <tr><th>First Name</th><th>Last Name</th><th>department</th><th>Certifications<th>Edit</th><th>Delete</th></tr>
 <!--logic to populate table -->
     <% for (var i = 0; i < users.length; i++) { if(users[i]._id == "58f518ff43a6d491cc0a3274") {  continue } %>
         <tr on-touch="clickTable(this)" onclick="clickTable(this)"  id="<%= users[i]._id %>">
@@ -76,7 +83,7 @@
 
                <%  }
       %>
-  <!--          </td>
+            </td>
             <% if(user._id == "5b1a8cee8d7ed00020a30a4f" || user._id == "58f518ff43a6d491cc0a3274")
             { %>
             <td class="info"><a href="manageEmployees/<%= users[i]._id %>" class="btn btn-info">Edit</a></td>
@@ -92,7 +99,7 @@
     else{%>
       <td class="danger"><a href="#" class="confirmation btn btn-danger" disabled>Delete</a></td>
 
-  <%    }%> -->
+  <%    }%>
         </tr>
     <% } %>
 
