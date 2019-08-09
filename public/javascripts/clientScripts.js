@@ -8,14 +8,50 @@ $('.servicesConfirmation').on('click', function() {
 });
 
 
+function addNewService(rowNumber){
+  console.log("in clientscript function" + rowNumber);
+var label = document.getElementById("label"+rowNumber);
+var input = document.getElementById("services"+rowNumber);
+var button = document.getElementById(rowNumber);
+var rowPlusOne = parseInt(rowNumber) + 1;
+let inputText = input.value;
+input.value="";
+label.innerHTML="service #" + rowPlusOne;
+
+let newlabel = document.createElement("label");
+let newLabelText =  document.createTextNode("service #" + rowNumber);
+newlabel.appendChild(newLabelText);
+let newinput = document.createElement("input");
+newinput.name ="services";
+newinput.id ="services";
+newinput.value = inputText;
+newlabel.htmlFor = "services";
+newlabel.addClass = "control-label";
+
+
+let br = document.createElement("br");
+let insertBeforeVar = document.getElementById("label" + rowNumber);
+
+servicesDiv.insertBefore(newlabel, insertBeforeVar);
+servicesDiv.insertBefore(newinput, insertBeforeVar);
+servicesDiv.insertBefore(br, insertBeforeVar);
+
+label.id="label"+rowPlusOne;
+button.id=rowPlusOne;
+input.id="services"+rowPlusOne;;
+}
+
+
+
+
 
 function clickTable(clickedRow) {
 window.location.href="viewEmployeeCertifications/" + clickedRow.id;
 }
 
-function OnSelectedIndexChanged(finterBY)
+function OnSelectedIndexChanged(filterBY)
 {
-let text = finterBY.options[finterBY.selectedIndex].value
+let text = filterBY.options[filterBY.selectedIndex].value
    console.log(text);
 
 let searchByTxtBox = document.getElementById("filterText");
@@ -119,11 +155,11 @@ function filterWithCategory()
   let filter = input.value.toUpperCase();
   let table = document.getElementById("filterTable");
   let tr = table.getElementsByTagName("tr");
-  let finterBY = document.getElementById("sortBy");
+  let filterBY = document.getElementById("sortBy");
   let categorySearchText = document.getElementById("filterCategory");
   let chk = document.getElementById("enableCertificateSearch");
   let filterCategory = categorySearchText.value.toUpperCase();
-  var filterByValue = finterBY.options[finterBY.selectedIndex].value;
+  var filterByValue = filterBY.options[filterBY.selectedIndex].value;
 
   if(filterCategory != "" && chk.checked != false)
   {
@@ -265,8 +301,8 @@ function filterTable() {
   let filter = input.value.toUpperCase();
  let table = document.getElementById("filterTable");
   let tr = table.getElementsByTagName("tr");
-  let finterBY = document.getElementById("sortBy");
-var filterByValue = finterBY.options[finterBY.selectedIndex].value;
+  let filterBY = document.getElementById("sortBy");
+var filterByValue = filterBY.options[filterBY.selectedIndex].value;
 
 if(enableCertificateSearch.checked != true)
 {

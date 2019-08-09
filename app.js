@@ -21,6 +21,18 @@ var home = require('./routes/home')
 var employeeDashboard = require('./routes/employeeDashboard');
 var certificatesDashboard = require('./routes/certificatesDashboard');
 var expiringDashboard  = require('./routes/expiringDashboard');
+var userManagment  = require('./routes/userManagment');
+var contractors  = require('./routes/contractors');
+const aws = require('aws-sdk');
+
+let s3 = new aws.S3({
+  accessKeyId: 'AKIAIYVQ4Q6NJ2ZJNUPA',
+  secretAccessKey: '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'
+});
+
+//accessKeyId: process.env.S3_KEY ,
+//secretAccessKey: process.env.S3_SECRET
+//process.env.S3_BUCKET
 
 var app = express();
 
@@ -62,6 +74,10 @@ app.use('/home', index)
 app.use('/employeeDashboard', employeeDashboard);
 app.use('/certificatesDashboard', certificatesDashboard);
 app.use('/expiringDashboard', expiringDashboard);
+app.use('/userManagment', userManagment);
+app.use('/contractors', contractors);
+
+
 
 
 
@@ -90,5 +106,5 @@ app.use(function(err, req, res, next) {
     title: "Error"
   });
 });
-
+const S3_BUCKET = 'ramara-township-storage';
 module.exports = app;
