@@ -3,9 +3,7 @@
 $('.confirmation').on('click', function() {
     return confirm('Are you sure you want to delete this?');
 });
-$('.servicesConfirmation').on('click', function() {
-    return confirm('You didnt add a service for this contractor. \n Are you sure you want to continue?');
-});
+
 
 
 function addNewService(rowNumber){
